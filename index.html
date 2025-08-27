@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboards with Fixed Swapped Icons and Links</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { background-color: #e0f2fe; position: relative; }
+  .dashboard-container {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    height: 50vh;
+    position: relative;
+  }
+  iframe { width: 100%; height: 100%; border: none; }
+
+ #dash4 {
+  
+  background-size: contain;      /* ทำให้ภาพพอดีพื้นที่ div */
+  background-position: center;   /* จัดภาพตรงกลาง */
+  background-repeat: no-repeat;  /* ไม่ให้ซ้ำ */
+  background-color: #f0f5f9;     /* สีพื้นหลัง กรณีภาพไม่เต็มพื้นที่ */
+}
+
+  .dashboard-icon {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 100;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.5s, left 1s, top 1s;
+  }
+  .dashboard-icon:hover { transform: scale(1.3); box-shadow: 0 6px 16px rgba(0,0,0,0.5); }
+
+  #icon1 { background: linear-gradient(135deg, #3b82f6, #60a5fa); color: white; animation: waterDrop 2s infinite ease-in-out; }
+  #icon2 { background: linear-gradient(135deg, #06b6d4, #22d3ee); color: white; }
+  #icon3 { background: linear-gradient(135deg, #facc15, #fbbf24); color: white; }
+
+  svg { width: 28px; height: 28px; }
+
+  @keyframes waterDrop {
+    0%,100%{ transform: translateY(0) scale(1); }
+    50%{ transform: translateY(-6px) scale(1.05); }
+  }
+
+  .fan-blades { transform-origin: center; animation: fanRotate 3s linear infinite; }
+  @keyframes fanRotate { 0%{ transform: rotate(0deg); } 100%{ transform: rotate(360deg); } }
+
+  .wind-lines { animation: windMove 2s ease-in-out infinite; }
+  @keyframes windMove {
+    0%,100%{ transform: translateX(0); opacity: 0.8; }
+    50%{ transform: translateX(6px); opacity: 0.4; }
+  }
+
+  .water-line {
+    position: absolute;
+    width: 2px;
+    background: #60a5fa;
+    z-index: 90;
+    animation: waterFlow 2s linear infinite alternate;
+  }
+  @keyframes waterFlow { 0%{ height:0; } 100%{ height:50px; } }
+
+  .wind-flow {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    z-index: 90;
+    animation: windFlowAnim 2s linear infinite alternate;
+  }
+  @keyframes windFlowAnim { 0%{ width:0; } 100%{ width:50px; } }
+</style>
+</head>
+<body class="p-6">
+
+<h1 class="text-2xl font-bold text-center mb-6 text-blue-800">Monitor Dashboard</h1>
+
+<div class= "grid grid-cols-2 gap-4">
+  <div class= "dashboard-container" id="dash1">
+    <iframe src="http://192.168.207.30/project/apps/index#page=21"></iframe>
+  </div>
+  <div class= "dashboard-container" id="dash2">
+    <iframe src="http://192.168.207.206/project/apps/index#page=1"></iframe>
+  </div>
+  <div class= "dashboard-container" id="dash3">
+    <iframe src="http://192.168.209.37/project/apps/index"></iframe>
+  </div>
+  <!-- Dashboard 4 (ว่าง) -->
+<div class="dashboard-container" id="dash4">
+  <div class="flex justify-around items-center h-full">
+    <a href="https://cssmartserviceb2c.b2clogin.com/cssmartserviceb2c.onmicrosoft.com/b2c_1_aboundcarriersmartsignupin/oauth2/v2.0/authorize?response_type=id_token&scope=https%3A%2F%2Fcssmartserviceb2c.onmicrosoft.com%2Fsmartserviceapi%2Fuser_impersonation%20openid%20profile&client_id=32f0d10a-8026-4b3a-824f-f81ad6159d6b&redirect_uri=https%3A%2F%2Fabound-hp.carrier.com&state=eyJpZCI6IjMxOGVhZTRjLWY2YzYtNDMzMS04NTgzLWI3NjhlNzYyNDNkYiIsInRzIjoxNzU2Mjc3NjA4LCJtZXRob2QiOiJyZWRpcmVjdEludGVyYWN0aW9uIn0%3D&nonce=4e084c39-3706-4a87-9614-e1e541d957a1&client_info=1&x-client-SKU=MSAL.JS&x-client-Ver=msal&client-request-id=7284c9a9-1ebf-4c7f-9e90-8bced875bfe1&response_mode=fragment" target="_blank">
+      <img src="https://static.vecteezy.com/system/resources/previews/006/689/864/non_2x/water-chiller-icon-illustration-free-vector.jpg" alt="Abound" class="h-28 w-28 object-cover rounded"/>
+    </a>
+    <a href="http://aipm.enmax.co.th/#/Screens/Home.phtml" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3463/3463440.png" alt="AIPM" class="h-28 w-28 object-cover rounded"/>
+    </a>
+    <a href="https://www.amr.pea.co.th/AMRWEB/MainCust.aspx" target="_blank">
+      <img src="https://png.pngtree.com/png-clipart/20230928/original/pngtree-electric-pole-icon-design-electric-wire-energy-vector-png-image_12897828.png" alt="PEA" class="h-28 w-28 object-cover rounded"/>
+    </a>
+  </div>
+</div>
+
+
+
+
+
+<!-- Icons with proper links -->
+<a href="http://192.168.207.30/project/apps/index#page=21" target="_blank" class="dashboard-icon" id="icon1">
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C12 2 5 10 5 15a7 7 0 0014 0c0-5-7-13-7-13z"/>
+  </svg>
+</a>
+<div id="waterLine" class="water-line"></div>
+
+<a href="http://192.168.209.37/project/apps/index" target="_blank" class="dashboard-icon" id="icon2">
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <g class="fan-blades">
+      <path d="M12 12L16 8M12 12L8 8M12 12L16 16M12 12L8 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="12" cy="12" r="2" fill="white"/>
+    </g>
+  </svg>
+</a>
+<div id= "air conditioner" class="air conditioner"></div>
+<a href= "http://192.168.207.206/project/apps/index" target="_blank" class="dashboard-icon" id="icon3">
+  <!-- Air Conditioner Icon -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <!-- ตัวเครื่องแอร์ -->
+    <rect x="3" y="7" width="18" height="10" rx="2" ry="2" fill="#06b6d4"/>
+    <rect x="6" y="10" width="12" height="4" rx="1" ry="1" fill="white"/>
+    <!-- พัดลมภายในเครื่องปรับอากาศ (หมุนได้) -->
+    <g class="fan-blades" transform="translate(12 12)">
+      <line x1="0" y1="0" x2="5" y2="0" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="-5" y2="0" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="0" y2="5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="0" y2="-5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="1" fill="white"/>
+    </g>
+  </svg>
+</a>
+
+<style>
+/* Animation พัดลมภายในเครื่องปรับอากาศ */
+.fan-blades {
+  transform-origin: center;
+  animation: fanRotate 2s linear infinite;
+}
+
+@keyframes fanRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+const icon1 = document.getElementById("icon1");
+const icon2 = document.getElementById("icon2");
+const icon3 = document.getElementById("icon3");
+
+const dash1 = document.getElementById("dash1");
+const dash2 = document.getElementById("dash2");
+const dash3 = document.getElementById("dash3");
+
+const waterLine = document.getElementById("waterLine");
+const windFlow = document.getElementById("windFlow");
+
+// วางไอคอนถาวร
+function positionIconsPermanent() {
+  // icon1 น้ำ -> dashboard 1
+  icon1.style.top = (dash1.getBoundingClientRect().top + window.scrollY - icon1.offsetHeight/2) + "px";
+  icon1.style.left = (dash1.getBoundingClientRect().left + window.scrollX - icon1.offsetWidth/2) + "px";
+  waterLine.style.top = (dash1.getBoundingClientRect().top + window.scrollY +10)+"px";
+  waterLine.style.left = (dash1.getBoundingClientRect().left + window.scrollX + 20)+"px";
+
+  // icon2 -> dashboard 3
+  icon2.style.top = (dash3.getBoundingClientRect().top + window.scrollY - icon2.offsetHeight/2) + "px";
+  icon2.style.left = (dash3.getBoundingClientRect().left + window.scrollX - icon2.offsetWidth/2) + "px";
+
+  // icon3 -> dashboard 2
+  icon3.style.top = (dash2.getBoundingClientRect().top + window.scrollY - icon3.offsetHeight/2) + "px";
+  icon3.style.left = (dash2.getBoundingClientRect().left + window.scrollX - icon3.offsetWidth/2) + "px";
+
+  // ปรับเส้นลมให้ตรง icon3 (dashboard2)
+  windFlow.style.top = (dash2.getBoundingClientRect().top + window.scrollY + 20)+"px";
+  windFlow.style.left = (dash2.getBoundingClientRect().left + window.scrollX + 10)+"px";
+}
+
+// เรียกใช้เมื่อโหลด
+positionIconsPermanent();
+
+// ปรับตำแหน่งเมื่อ scroll หรือ resize
+window.addEventListener("resize", positionIconsPermanent);
+window.addEventListener("scroll", positionIconsPermanent);
+</script>
+
+</body>
+</html>
